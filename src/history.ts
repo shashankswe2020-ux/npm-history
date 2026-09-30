@@ -85,11 +85,9 @@ export function parseQuery(params: URLSearchParams, now = new Date()): Query {
   const result = schema.safeParse(Object.fromEntries(params));
   if (!result.success) return invalid();
   const { start, end, mode, theme } = result.data;
-  const packages = (
-    result.data.packages ??
-    result.data.package ??
-    "whoop-ai-mcp"
-  ).split(",");
+  const packages = (result.data.packages ?? result.data.package ?? "zod").split(
+    ",",
+  );
   if (
     packages.length > 3 ||
     new Set(packages).size !== packages.length ||

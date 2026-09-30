@@ -1,0 +1,9 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "npm-history",
+  "pages_build_output_dir": "./dist/public",
+  "compatibility_date": "2026-09-30",
+  "send_metrics": false,
+  "upload_source_maps": false,
+  "services": [{ "binding": "HISTORY_API", "service": "npm-history-api" }]
+}

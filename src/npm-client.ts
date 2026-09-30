@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { Buffer } from "node:buffer";
 import {
   addDays,
   AppError,
@@ -106,7 +107,7 @@ export function createNpmClient(options: Options = {}): NpmClient {
         const response = await fetcher(
           `https://api.npmjs.org/downloads/range/${start}:${end}/${encodeURIComponent(name)}`,
           {
-            redirect: "error",
+            redirect: "manual",
             signal: AbortSignal.any([signal, AbortSignal.timeout(8_000)]),
             headers: {
               accept: "application/json",

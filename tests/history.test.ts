@@ -5,7 +5,7 @@ describe("history dates and query contract", () => {
   const now = new Date("2026-09-30T12:00:00Z");
   it("defaults to completed UTC days, never a partial current day", () => {
     expect(parseQuery(new URLSearchParams(), now)).toEqual({
-      packages: ["whoop-ai-mcp"],
+      packages: ["zod"],
       start: "2025-09-30",
       end: "2026-09-29",
       mode: "cumulative",

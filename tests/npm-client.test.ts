@@ -66,7 +66,7 @@ describe("npm client", () => {
     expect(fetcher).toHaveBeenCalledWith(
       "https://api.npmjs.org/downloads/range/2026-01-01:2026-01-03/%40types%2Fnode",
       expect.objectContaining({
-        redirect: "error",
+        redirect: "manual",
         signal: expect.any(AbortSignal),
       }),
     );

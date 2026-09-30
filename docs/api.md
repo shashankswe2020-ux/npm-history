@@ -1,3 +1,5 @@
+| `packages` | 1-3 unique comma-separated lowercase npm package names, scoped names accepted | `zod` |
+
 # HTTP API
 
 ## Routes
@@ -15,7 +17,7 @@ HEAD is supported. Other methods return 405 with `Allow: GET, HEAD`.
 
 | Parameter  | Meaning                                                                       | Default                   |
 | ---------- | ----------------------------------------------------------------------------- | ------------------------- |
-| `packages` | 1-3 unique comma-separated lowercase npm package names, scoped names accepted | `whoop-ai-mcp`            |
+| `packages` | 1-3 unique comma-separated lowercase npm package names, scoped names accepted | `zod`                     |
 | `package`  | Singular alias; cannot be combined with `packages`                            | none                      |
 | `start`    | Inclusive UTC day, `YYYY-MM-DD`, at least `2015-01-10`                        | 364 days before yesterday |
 | `end`      | Inclusive UTC day, no later than yesterday                                    | yesterday                 |

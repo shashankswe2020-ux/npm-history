@@ -1,0 +1,19 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "npm-history-api",
+  "main": "src/worker-entry.mjs",
+  "compatibility_date": "2026-09-30",
+  "workers_dev": false,
+  "preview_urls": false,
+  "send_metrics": false,
+  "ratelimits": [
+    {
+      "name": "MISS_LIMITER",
+      "namespace_id": "930202601",
+      "simple": { "limit": 30, "period": 60 }
+    }
+  ],
+  "observability": { "enabled": false },
+  "logpush": false,
+  "upload_source_maps": false
+}

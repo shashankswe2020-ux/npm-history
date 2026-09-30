@@ -52,8 +52,10 @@ SVG text is escaped, scripts and external resources are absent, and the browser
 uses textContent for untrusted labels. Static serving is allowlisted. Errors do
 not reveal upstream bodies, stack traces or filesystem paths. Fonts are local.
 
-This is not a distributed abuse-prevention system. Add edge request limits,
-connection limits, TLS and monitoring before opening a public hosted endpoint.
+The hosted deployment adds an independent Pages gateway, private API Worker,
+canonical edge caching and a per-location cache-miss limiter. See
+[deployment](deployment.md) for free-tier limits and remaining operational risks.
+These controls are not a distributed global abuse-prevention or quota system.
 
 ## Sources
 

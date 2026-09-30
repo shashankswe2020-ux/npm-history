@@ -5,6 +5,8 @@ Cumulative npm download charts, built for sharing.
 Compare up to three packages, inspect daily or cumulative counts, and export a
 standalone SVG or a live README embed. No account or API key required.
 
+**[Open npm-history](https://npm-history.pages.dev)**
+
 ![npm-history showing cumulative Zod downloads from 2020 through September 2026](docs/images/preview.png)
 
 Preview captured from npm's public API; not a live embed.
@@ -25,18 +27,22 @@ after source edits and refresh the browser.
 
 ## Live Embeds
 
-Host the app on your own HTTPS origin, then use **Embed** to copy Markdown.
+Open [npm-history.pages.dev](https://npm-history.pages.dev), then use **Embed** to copy Markdown.
 The generated URL fixes the start date and omits the end date, so the cumulative
-chart grows through yesterday as npm publishes data. Example URL path:
+chart grows through yesterday as npm publishes data:
 
-```text
-/svg?package=zod&start=2020-01-01&mode=cumulative&theme=light
+```md
+[![npm download history](https://npm-history.pages.dev/svg?package=zod&start=2020-01-01)](https://npm-history.pages.dev/?package=zod&start=2020-01-01)
 ```
+
+[![npm download history](https://npm-history.pages.dev/svg?package=zod&start=2020-01-01)](https://npm-history.pages.dev/?package=zod&start=2020-01-01)
 
 Use `packages=zod,valibot` for comparisons and `theme=dark` for a dark SVG.
 **Share** retains both dates for a reproducible selection; **Download** saves the
 currently selected chart. A localhost embed is not accessible from GitHub.
-This repository does not yet have a hosted public service.
+The public service is a free-tier beta: availability is subject to Cloudflare
+quotas and npm availability. Cold multi-year charts can take tens of seconds;
+cached charts are much faster. See [deployment limits](docs/deployment.md).
 
 ## What the Numbers Mean
 
@@ -47,7 +53,7 @@ This repository does not yet have a hosted public service.
 - Missing or malformed days produce an explicit error, never an invented zero.
 - Downloads include CI, bots, reinstalls and dependency installations. They are not unique users.
 - npm may lag behind yesterday. Choose an earlier end date if a range is not yet available.
-- Counts are cached in process for an hour. Provider-side revisions can change historical totals.
+- Hosted charts are edge-cached for an hour; the local Node service uses an in-process cache. Provider-side revisions can change historical totals.
 
 ## Development
 

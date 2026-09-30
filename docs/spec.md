@@ -44,7 +44,7 @@ Vitest and Playwright. Original SVG chart, bundled Lucide controls and local fon
 
 GET /api/history and GET /svg accept packages (comma-separated, max 3),
 start/end (inclusive UTC YYYY-MM-DD), mode (cumulative|daily), theme (light|dark).
-The singular package alias is supported for embedding. Defaults: whoop-ai-mcp,
+The singular package alias is supported for embedding. Defaults: zod,
 last 365 completed UTC days, cumulative, light. Unknown/duplicate parameters fail.
 Dates cannot precede 2015-01-10 or exceed yesterday. SVG theme does not affect data.
 
@@ -88,6 +88,18 @@ empty/error states and keyboard controls. Run tests, lint, types, build and audi
 Always keep data labels honest and preserve the existing WHOOP repository.
 Ask before adding accounts, paid resources or deployment. Never commit secrets,
 copy upstream code without license compliance or fake production download counts.
+
+## Public Hosting Increment (Approved 2026-09-30)
+
+Deploy a separate npm-history Pages project and private npm-history-api Worker
+on the existing Cloudflare account, Free plan only, on an independent pages.dev
+hostname. No billing changes or WHOOP resource changes or bindings.
+Reuse the core npm and SVG modules, add a Fetch-native adapter, static assets,
+canonical edge response caching, per-location cache-miss limits, TLS headers,
+and deployment/runtime tests. Verify worst-case multi-year charts on the actual
+platform before calling the service ready. Free-plan quotas and any failed gates
+must be disclosed. Hosting does not imply capacity or availability parity with
+Star History. Retain local Node execution as an alternative.
 
 ## Sources
 

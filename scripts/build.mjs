@@ -30,7 +30,15 @@ await build({
   assetNames: "fonts/[name]-[hash]",
   publicPath: "/",
 });
-for (const name of ["index.html", "favicon.svg"])
+await build({
+  absWorkingDir: root,
+  entryPoints: ["src/pages-entry.mjs"],
+  outfile: "dist/public/_worker.js",
+  bundle: true,
+  format: "esm",
+  target: "es2022",
+});
+for (const name of ["index.html", "favicon.svg", "_headers", "_routes.json"])
   await cp(
     new URL(`../web/${name}`, import.meta.url),
     new URL(`../dist/public/${name}`, import.meta.url),

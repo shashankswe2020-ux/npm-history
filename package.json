@@ -15,7 +15,10 @@
     "build": "node scripts/build.mjs",
     "dev": "npm run build && node --watch dist/server.js",
     "start": "node dist/server.js",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "build:worker": "wrangler deploy --config wrangler.api.json --dry-run --outdir build-worker",
+    "deploy:api": "wrangler deploy --config wrangler.api.json",
+    "deploy:site": "wrangler pages deploy --branch main --force"
   },
   "dependencies": {
     "d3": "^7.9.0",
@@ -32,9 +35,11 @@
     "esbuild": "^0.28.2",
     "eslint": "^10.11.0",
     "lucide": "^1.49.0",
+    "miniflare": "^5.20260926.1-alpha",
     "prettier": "^3.9.9",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.71.0",
-    "vitest": "^5.0.2"
+    "vitest": "^5.0.2",
+    "wrangler": "4.144.0"
   }
 }
