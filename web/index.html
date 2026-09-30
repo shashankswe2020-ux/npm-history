@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Cumulative npm download history. Compare packages and export live SVG charts for your README."
+    />
+    <title>npm-history | Download history</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/app.css" />
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <a class="skip" href="#workspace">Skip to chart</a>
+    <header class="header">
+      <a class="brand" href="/" aria-label="npm-history home"
+        ><i data-lucide="chart-no-axes-combined" aria-hidden="true"></i
+        ><span>npm<span class="brand-divider">/</span>history</span></a
+      >
+      <nav aria-label="Project">
+        <a href="https://github.com/shashankswe2020-ux/npm-history"
+          ><i data-lucide="git-branch" aria-hidden="true"></i>Source</a
+        ><button
+          id="theme"
+          class="icon"
+          type="button"
+          aria-label="Dark theme"
+          title="Dark theme"
+        >
+          <i data-lucide="moon" aria-hidden="true"></i>
+        </button>
+      </nav>
+    </header>
+    <main id="workspace">
+      <div class="title-row">
+        <div>
+          <p class="eyebrow">THE PACKAGE INDEX</p>
+          <h1>Download history</h1>
+        </div>
+        <span class="source-label"
+          ><span class="source-dot"></span>npm registry</span
+        >
+      </div>
+      <form id="query-form">
+        <div class="search-row">
+          <label class="package-field"
+            >Packages<input
+              id="packages"
+              name="packages"
+              required
+              maxlength="644"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="zod, valibot, @sinclair/typebox" /></label
+          ><button class="primary" type="submit" aria-label="Plot downloads">
+            <i data-lucide="arrow-right" aria-hidden="true"></i
+            ><span>Plot downloads</span>
+          </button>
+        </div>
+        <div class="filter-row">
+          <fieldset class="segmented">
+            <legend class="sr-only">Chart mode</legend>
+            <label
+              ><input
+                type="radio"
+                name="mode"
+                value="cumulative"
+                checked
+              /><span>Cumulative</span></label
+            ><label
+              ><input type="radio" name="mode" value="daily" /><span
+                >Daily</span
+              ></label
+            >
+          </fieldset>
+          <label class="range-field"
+            ><span class="sr-only">Date range</span
+            ><select id="range">
+              <option value="30">Last 30 days</option>
+              <option value="90">Last 90 days</option>
+              <option value="365" selected>Last year</option>
+              <option value="all">Since Jan 2015</option>
+              <option value="custom">Custom dates</option>
+            </select></label
+          >
+          <div class="date-fields">
+            <label
+              >From<input
+                id="start"
+                type="date"
+                required
+                min="2015-01-10" /></label
+            ><label
+              >Through<input id="end" type="date" required min="2015-01-10"
+            /></label>
+          </div>
+        </div>
+      </form>
+      <section class="results" aria-label="Download chart">
+        <div class="chart-toolbar">
+          <p id="status" role="status" aria-live="polite">
+            Loading download history...
+          </p>
+          <div class="actions">
+            <button
+              id="retry"
+              class="icon"
+              title="Refresh chart"
+              aria-label="Refresh chart"
+            >
+              <i data-lucide="refresh-cw" aria-hidden="true"></i></button
+            ><button
+              id="share"
+              class="icon"
+              title="Copy share link"
+              aria-label="Copy share link"
+              disabled
+            >
+              <i data-lucide="link" aria-hidden="true"></i></button
+            ><button
+              id="download"
+              class="icon"
+              title="Download SVG"
+              aria-label="Download SVG"
+              disabled
+            >
+              <i data-lucide="download" aria-hidden="true"></i></button
+            ><button
+              id="embed"
+              title="Embed chart"
+              aria-label="Embed chart"
+              disabled
+            >
+              <i data-lucide="code" aria-hidden="true"></i><span>Embed</span>
+            </button>
+          </div>
+        </div>
+        <div
+          id="chart-frame"
+          class="chart-frame"
+          aria-busy="true"
+          tabindex="0"
+          aria-label="Chart viewport"
+        >
+          <img
+            id="chart-image"
+            width="1000"
+            height="620"
+            alt="npm download history chart"
+            hidden
+          />
+          <div id="chart-placeholder">
+            <i data-lucide="chart-no-axes-combined" aria-hidden="true"></i
+            ><span>Loading history</span>
+          </div>
+        </div>
+        <div id="inspector" class="inspector" hidden>
+          <label for="inspect-date">Inspect date</label
+          ><input
+            id="inspect-date"
+            type="range"
+            min="0"
+            max="0"
+            value="0"
+          /><output id="readout" for="inspect-date"></output>
+        </div>
+        <div class="table-scroll">
+          <table id="summary" hidden>
+            <caption>
+              Downloads in selected period
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Package</th>
+                <th scope="col">Total downloads</th>
+                <th scope="col">Daily average</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+      <p id="notice" role="status" aria-live="polite"></p>
+      <footer>
+        <span
+          >Counts include automated installs. Downloads are not unique
+          users.</span
+        ><a
+          href="https://github.com/npm/registry/blob/main/docs/download-counts.md"
+          >Data source <i data-lucide="arrow-up-right" aria-hidden="true"></i
+        ></a>
+      </footer>
+    </main>
+    <dialog id="embed-dialog" aria-labelledby="embed-title">
+      <div class="dialog-title">
+        <h2 id="embed-title">README embed</h2>
+        <button
+          class="icon"
+          id="close-embed"
+          title="Close embed"
+          aria-label="Close embed"
+        >
+          <i data-lucide="x" aria-hidden="true"></i>
+        </button>
+      </div>
+      <label for="embed-code">Markdown embed</label
+      ><textarea id="embed-code" readonly rows="6"></textarea
+      ><button id="copy-embed" class="primary">
+        <i data-lucide="copy" aria-hidden="true"></i>Copy Markdown
+      </button>
+      <p id="embed-notice" role="status"></p>
+    </dialog>
+    <noscript
+      ><p>
+        JavaScript is required for the chart workspace. The /svg endpoint works
+        without JavaScript.
+      </p></noscript
+    >
+  </body>
+</html>
