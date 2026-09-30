@@ -27,7 +27,10 @@ and fixed. No Star History source or assets were copied.
   the cached request took 92ms. Runtime tests verify actual rate-limit bindings.
 - Sustained-load CPU headroom and availability parity with Star History are not
   certified; quotas remain shared at the Cloudflare account level.
-- Verify live README images through GitHub's image proxy and long-term refresh.
+- Live README SVG loaded successfully through GitHub's Camo image proxy at
+  1000x620. Hosted desktop/mobile views rendered real chart pixels without
+  page errors or overflow and generated independent public embed URLs.
+  Long-term image-proxy refresh timing remains unverified.
 - Build and run the Docker image: the local Docker daemon was unavailable.
 - Choose an application license before advertising permissive reuse. No license
   was selected on behalf of the owner; third-party licenses are retained separately.
